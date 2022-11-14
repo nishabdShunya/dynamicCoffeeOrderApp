@@ -58,10 +58,34 @@ function removeFromScreen(id) {
     orders.removeChild(orderCancelled);
 }
 
+/* OLD Method for updating/editing the coffee order
 function editOrder(id, username, email) {
     cancelOrder(id);
     inputName.value = username;
     inputMail.value = email;
+}
+*/
+
+// AXIOS-PUT Method for updating/editing the coffee order
+function editOrder(id, oldUsername, oldEmail) {
+    axios.put('https://crudcrud.com/api/95b1783b7d2b428caf6163fe07e614c5/orders/' + id, {
+        username: oldUsername,
+        email: oldEmail
+    })
+        .then((putResponse) => {
+            cancelOrder(id);
+            axios.get('https://crudcrud.com/api/95b1783b7d2b428caf6163fe07e614c5/orders/' + id)
+                .then((getResponse) => {
+                    inputName.value = getResponse.data.username;
+                    inputMail.value = getResponse.data.email;
+                })
+                .catch((error) => {
+                    document.body.innerHTML += `<h3 id="error">Error: Unable to get the data. (${error})</h3>`;
+                })
+        })
+        .catch((error) => {
+            document.body.innerHTML += `<h3 id="error">Error: Unable to update the data. (${error})</h3>`;
+        })
 }
 
 // Doing this thing so that data does not go away from the screen on refreshing the webpage
