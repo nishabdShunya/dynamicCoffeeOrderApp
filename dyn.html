@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic App</title>
+    <link rel="stylesheet" href="dyn.css">
+</head>
+
+<body>
+    <header>
+        <h1>Order Your Coffee NOW</h1>
+    </header>
+    <main>
+        <div id="container">
+            <p>Get the best quality organic coffee delivered right at your doorstep, just on a click.</p>
+            <form id="coffee-form">
+                <label for="username">Username</label>
+                <input type="text" id="username">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <input type="submit" value="GET ME MY COFFEE" id="submit">
+            </form>
+        </div>
+        <ul id="orders"></ul>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
+    <script src="dynAPI.js"></script>
+</body>
+
+</html>
